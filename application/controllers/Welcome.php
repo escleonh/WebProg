@@ -3,23 +3,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
+	function __construct() {
+		parent::__construct();
+		$this->load->model('OrderData');
+	  }
+
+
 	public function index()
 	{
-		$this->load->view('welcome_message');
+	
+		// $data['pageContent'] = '<a href="#">View Orders</a>';
+		$data['pageContent'] = '<a href="http://165.227.250.8/~hescalante/WebProg/index.php/Welcome?userid=1">View Order</a>';
+		 
+		
+		foreach($this->OrderData->getPastOrders() as $row){
+			$data['pageContent'] .= '<h5>' . $row->OrderID. '</h5>';
+			$data['pageContent'] .= '<h5>' . $row->UserID. '</h5>';
+			$data['pageContent'] .= '<h5>' . $row->OrderTotal. '</h5>';
+			$data['pageContent'] .= '<h5>' . $row->OrderDate. '</h5>';
+			$data['pageContent'] .= '<h5>' . $row->ItemOrderedDescription. '</h5>';
+			$data['pageContent'] .= '<h5>' . $row->ItemOrderedName. '</h5>';
+			$data['pageContent'] .= '*****************************';
+		 }
+
+
+		$this->load->view('welcome_message', $data);
 	}
 }
