@@ -1,0 +1,38 @@
+.container{
+    margin: 0;
+    padding:0;
+}
+ .mainContainer{
+    min-height: 72vh;
+}
+.bottom{
+    width: 100%;
+    height: 28vh;
+    background: url('http://165.227.250.8/~hescalante/WebProg/assets/bluewave.svg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.navigationbar a{
+    color: white!important;
+}
+.btn-danger, .btn-danger:hover, .btn-danger:active, .btn-danger:visited {
+    background-color: #122638 !important;
+    border: none;
+}
+ul li{
+    display: inline-block !important;
+}
+a{
+    color: black;
+}
+.navigationbar{
+    background-color: #122638;
+}
+ul{
+    margin: 0;
+}
+h5{
+    text-align: center;
+    margin-top: 20px;
+}

@@ -1,0 +1,50 @@
+
+ul li{
+    display: inline-block !important;
+}
+ul{
+    margin: 0;
+  
+}
+label{
+    margin-right: 30px;
+}
+div{
+    /* border:1px solid red; */
+}
+.card{
+  margin: 20px;
+}
+.productsContainer {
+display: flex;
+flex-direction: row;
+justify-content: center;
+flex-wrap: wrap;
+}
+.searchbutton{
+margin-top: 20px;
+display: flex;
+flex-direction: row;
+justify-content: center;
+}
+.navigationbar{
+background-color: #122638;
+}
+.searchContainer{
+    margin-top: 30px!important;
+}
+
+body{
+    min-height: 100vh;
+    background: url('http://165.227.250.8/~hescalante/WebProg/assets/productsbg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+#success-alert{
+    margin-bottom:0;
+}
+a{
+    color: white;
+    
+}

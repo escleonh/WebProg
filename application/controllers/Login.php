@@ -18,35 +18,55 @@ class Login  extends CI_Controller{
     }
     
     function index(){
+
+        // if (isset($_POST['Login']) && $_POST['Login'] != "") {
+        //     $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+        //     $this->form_validation->set_rules('password', 'Password', 'trim|required');
+        //     if ($this->form_validation->run() == TRUE) {
+        //         if (count($this->AuthData->checkLogin($_POST['email'], $_POST['password'])) == 1) {
+        //             $email = $_POST['email']; 
+        //    $this->session->set_flashdata('email', $email);
+        //   // $userid = $this->Account_model->get_userid($email);
+
+        //             $sess_array = array('UserID' => $this->AuthData->checkLogin($_POST['email'], $_POST['password']));
+        //             $this->session->set_userdata('logged_in', $sess_array);
+        //             redirect(base_url() . "index.php/Accounts/index", 'refresh');
+        //         } else
+        //             echo 'login error';
+        //     }
+        // }
         if (isset($_POST['Login']) && $_POST['Login'] != "") {
             $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
             $this->form_validation->set_rules('password', 'Password', 'trim|required');
             if ($this->form_validation->run() == TRUE) {
-                if (count($this->AuthData->checkLogin($_POST['email'], $_POST['password'])) == 1) {
-                    $email = $_POST['email']; 
-           $this->session->set_flashdata('email', $email);
-          // $userid = $this->Account_model->get_userid($email);
-
+                if ($this->AuthData->isUser($_POST['email'], $_POST['password']) == 1) {
+                    // $email = $_POST['email'];
+                    // $this->session->set_flashdata('email', $email);
+                    $_SESSION['email']=$_POST['email'];
                     $sess_array = array('UserID' => $this->AuthData->checkLogin($_POST['email'], $_POST['password']));
                     $this->session->set_userdata('logged_in', $sess_array);
-                    redirect(base_url() . "index.php/Accounts/index", 'refresh');
+
+                    redirect(base_url() . "index.php/Products/index", 'refresh');
                 } else
                     echo 'login error';
             }
         }
-        
+
         if (isset($_POST['Create']) && $_POST['Create'] != '') {
             //echo 'got here';
             redirect(base_url() . 'index.php/login/create', 'refresh');
         }
-            
-        $data['pageContent'] = '      <div class="row">';
-        $data['pageContent'] .= '        <div class="col-sm-10">';
-        $data['pageContent'] .= '        <h4>Login to start</h4>';
+        
+       
+       
+        $data['pageContent'] = '      <div style="display:flex; height: 100vh; align-items:center;" class="row">';
+        $data['pageContent'] .= '        <div class="col-sm-5">';
+        $data['pageContent'] .= '           </div>';
+        $data['pageContent'] .= '        <div class="col-sm-2">';
+        $data['pageContent'] .='<img style="width:200px" src ="'. base_url() .'assets/shop.jpg"> ';
+        $data['pageContent'] .= '           <br />';
+        $data['pageContent'] .= '        <h4>Login to Start</h4>';
         $data['pageContent'] .= '        <p>If you dont have an account. You can create one for free</p>';
-        $data['pageContent'] .= '        <div class="row">';
-        $data['pageContent'] .= '        <div class="col-sm-3">';
-        //$data['pageContent'] .=  '<form action="index.php" method="get">';
         $data['pageContent'] .= '         <form action="' . base_url() . 'index.php/login" method="POST">';
         $data['pageContent'] .= '           <div class=form-group">';
         $data['pageContent'] .= '             <label>Email</label>';
@@ -58,12 +78,16 @@ class Login  extends CI_Controller{
         $data['pageContent'] .= '           </div>';
         $data['pageContent'] .= '           <br />';
         $data['pageContent'] .= '           <div class=form-group">';
-        $data['pageContent'] .= '             <input class="form-control btn-success" name="Login" value="Log in" type="submit">';
+        $data['pageContent'] .= '             <input style="border-radius:25px" class="form-control btn-success" name="Login" value="Log in" type="submit">';
         $data['pageContent'] .= '           <br />';
-        $data['pageContent'] .= '           <input class="form-control btn-success" name="Create" value="User Sign-up" type="submit">';
+        $data['pageContent'] .= '           <input style="border-radius:25px" class="form-control btn-success" name="Create" value="Create Account" type="submit">';
         $data['pageContent'] .= '           </div>';
         $data['pageContent'] .= '         </form>';
         $data['pageContent'] .= '      </div>';
+        $data['pageContent'] .= '        <div class="col-sm-5">';
+          $data['pageContent'] .= '           </div>';
+
+        
         $this->load->view('users/LoginPage', $data);
     }
     
@@ -82,7 +106,9 @@ class Login  extends CI_Controller{
             }
         }
 
-        $data['pageContent'] = '      <div class="row">';
+        $data['pageContent'] = '      <div style="display:flex; height: 100vh; align-items:center;" class="row">';
+        $data['pageContent'] .= '        <div class="col-sm-5">';
+        $data['pageContent'] .= '           </div>';
         $data['pageContent'] .= '        <div class="col-sm-2">';
         $data['pageContent'] .= '        <h4>User Sign up</h4>';
         $data['pageContent'] .= validation_errors();
@@ -99,16 +125,14 @@ class Login  extends CI_Controller{
         $data['pageContent'] .= '             <label>Full Name</label>';
         $data['pageContent'] .= '          <input type="text" name="fullname" class="form-control">';
         $data['pageContent'] .= '           </div>';
-//        $data['pageContent'] .= '           <div class=form-group">';
-//        $data['pageContent'] .= '             <label>Last Name</label>';
-//        $data['pageContent'] .= '          <input type="text" name="lastname" class="form-control">';
-//        $data['pageContent'] .= '           </div>';
         $data['pageContent'] .= '           <br />';
         $data['pageContent'] .= '           <div class=form-group">';
-        $data['pageContent'] .= '             <input class="form-control btn-success" name="Login" value="Create Account" type="submit">';
+        $data['pageContent'] .= '             <input style="border-radius:25px" class="form-control btn-success" name="Login" value="Create Account" type="submit">';
         $data['pageContent'] .= '           </div>';
         $data['pageContent'] .= '         </form>';
         $data['pageContent'] .= '      </div>';
+        $data['pageContent'] .= '        <div class="col-sm-5">';
+        $data['pageContent'] .= '           </div>';
         
         //redirect(base_url() . 'index.php/login', 'refresh');
 
@@ -117,4 +141,9 @@ class Login  extends CI_Controller{
 
     }
     //redirect(base_url() . 'index.php/login/create', 'refresh');
+
+    public function logout(){
+        $this->session->sess_destroy();
+        redirect(base_url());
+       }  
 }

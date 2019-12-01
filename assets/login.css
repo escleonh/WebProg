@@ -1,0 +1,16 @@
+h4{
+/*    display: flex;
+    align-items: center;*/
+ text-align: center;
+}
+p{
+     text-align: center;
+}
+h3{
+     text-align: center;
+}
+body{
+    background-color: #f2f2f2;
+    background: url("http://165.227.250.8/~hescalante/WebProg/assets/bg.JPG");
+    background-size:cover;
+}

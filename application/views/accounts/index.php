@@ -13,71 +13,16 @@
     </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
-   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>users.css">
+    <link rel="stylesheet" type="text/css"  href="http://165.227.250.8/~hescalante/WebProg/assets/accounts.css">
 
 </head>
 
 <body>
 
 
-
-
-
-
-
-
-
-    <!-- <h4>User Profile</h4>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-2 ">
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <th scope="col">User Info</th>
-                        </tr>
-                        <tr>
-                            <th scope="row">Past Orders</th>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-sm-2 ">
-</div>
-            <div class="col-sm-8">
-                <h5>User Info</h5>
-            <table class="table">
-                    <tbody>
-                        <tr>
-                            <th scope="col">
-                            <form>
-                        <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" class="form-control" id="name">
-                        </div>
-
-                            </th>
-                            <th scope="col">
-                            <div class="form-group">
-                            <label for="email">E-mail</label>
-                            <input type="text" class="form-control" id="email">
-                        </div>
-                         </th>
-                            
-                        </tr>
-
-                    </form>
-
-                    
-                    </tbody>
-                </table>
-                <button type="button" class="btn btn-success">Success</button>
-
-            </div>
-        </div>
-    </div> -->
-
-    <?php echo $pageContent; ?>
+    <?php echo $pageContent; 
+    ?>
+    <div class="container-fluid bottom"></div>
 </body>
 
 </html>

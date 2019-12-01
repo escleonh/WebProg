@@ -4,7 +4,12 @@ class AuthData extends CI_Model {
     function setPasswordHash($password) {
         return Hash('SHA512', 'adcJxJilCLyGKny7aSMKgDxjZVVyQG3UpGUvIsxyiuo22jt4NFhSAGBTzyE3vQh' . $password);
     }
-    
+    function isUser($email, $password){
+        $query = $this->db->query("select count(*) as total  from Final_Users where Email = '".$email."' and Password = '".$this->setPasswordHash($password)."'");
+        $res = $query->result();
+        return $res[0]->total;
+    }
+
     function checkLogin($email, $password) {
         //$query = $this->db->query("select users_id from users where users_email = '".$email."' and users_password = '".$this->setPasswordHash($password)."'");
         $query = $this->db->query("select UserID, FullName from Final_Users where Email = '".$email."' and Password = '".$this->setPasswordHash($password)."'");
@@ -22,6 +27,7 @@ class AuthData extends CI_Model {
         $this->db->insert('Final_Users', $users);
         
     }
+    
     
 }
 
